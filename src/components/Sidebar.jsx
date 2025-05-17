@@ -44,20 +44,28 @@ function Sidebar({isOpen}) {
             id: "main",
             items: [{icon: Home, label: "Bosh sahifa", path: "/"}],
         },
+        // {
+        //     id: "academic",
+        //     // title: "Faculty",
+        //     items: [
+        //         // {icon: RiFolderAddLine, label: "Fakultet qo'shish", path: "/create-faculty"},
+        //         {icon: FaRegListAlt, label: "Bo'limlar", path: "/list-department"},
+        //     ],
+        // },
+        // {
+        //     id: "user",
+        //     // title: "Category",
+        //     items: [
+        //         // {icon: RiFolderAddLine, label: "Kategory qo'shish", path: "/create-category"},
+        //         {icon: PiUserListFill, label: "Xodimlar", path: "/list-users"},
+        //     ],
+        // },
         {
-            id: "academic",
-            // title: "Faculty",
-            items: [
-                // {icon: RiFolderAddLine, label: "Fakultet qo'shish", path: "/create-faculty"},
-                {icon: FaRegListAlt, label: "Bo'limlar", path: "/list-department"},
-            ],
-        },
-        {
-            id: "user",
+            id: "device",
             // title: "Category",
             items: [
                 // {icon: RiFolderAddLine, label: "Kategory qo'shish", path: "/create-category"},
-                {icon: PiUserListFill, label: "Xodimlar", path: "/list-users"},
+                {icon: PiUserListFill, label: "Abiturientlar", path: "/list-students"},
             ],
         },
         // {

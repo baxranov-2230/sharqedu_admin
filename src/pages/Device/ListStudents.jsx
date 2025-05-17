@@ -9,10 +9,10 @@ import {MdDelete} from "react-icons/md";
 import {RiAddBoxLine} from "react-icons/ri";
 import {GetAllStudent} from "../../Api/StudentApi.jsx";
 
-function ListUser() {
+function ListStudents() {
     const [isModalOpen, setIsModalOpen] = useState(null);
     const {isError, isSuccess, isLoading, data, error, refetch} = useQuery({
-        queryKey: ["list-student"],
+        queryKey: ["list-students"],
         queryFn: GetAllStudent,
     });
 
@@ -48,12 +48,12 @@ function ListUser() {
         <div className="space-y-6">
             <div className="flex items-center justify-between">
                 <h2 className="text-2xl font-bold text-gray-800">Barcha Abiturentlar</h2>
-                <button className="bg-green-600 text-white px-4 py-2 rounded">
-                    <Link to="/create-device" className="flex items-center">
-                        <RiAddBoxLine className="mr-2"/>
-                        Abiturrent qo'shish
-                    </Link>
-                </button>
+                {/*<button className="bg-green-600 text-white px-4 py-2 rounded " disabled>*/}
+                {/*    <Link to="/create-device" className="flex items-center">*/}
+                {/*        <RiAddBoxLine className="mr-2"/>*/}
+                {/*        Abiturrent qo'shish*/}
+                {/*    </Link>*/}
+                {/*</button>*/}
             </div>
 
             <div className="bg-white rounded-lg shadow">
@@ -138,4 +138,4 @@ function ListUser() {
     );
 }
 
-export default ListUser;
+export default ListStudents;

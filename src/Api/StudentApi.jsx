@@ -1,29 +1,29 @@
 const API_URL =  import.meta.env.VITE_API_URL;
 import axiosInstance from "./axiosinstance";
-export const CreateDeviceApi = async (deviceDate) => {
-    try {
-        const response = await axiosInstance.post(
-            `${API_URL}/device/add_device`,
-            {
-                name: deviceDate.name,
-                serial_number: deviceDate.serial_number,
-                status: deviceDate.status,
-                user_id: deviceDate.userId,
-                category_id: deviceDate.categoryId
-            },
-        );
-
-        return await response.data;
-    } catch (error) {
-        if (error.response && error.response.data.message) {
-            throw new Error(error.response.data.message);
-        }
-        throw new Error(error.response.data.detail);
-    }
-};
-export const GetAllDevice = async () => {
-    const allDevice = await axiosInstance.get(`${API_URL}/device/get`);
-    return allDevice.data;
+// export const CreateDeviceApi = async (deviceDate) => {
+//     try {
+//         const response = await axiosInstance.post(
+//             `${API_URL}/device/add_device`,
+//             {
+//                 name: deviceDate.name,
+//                 serial_number: deviceDate.serial_number,
+//                 status: deviceDate.status,
+//                 user_id: deviceDate.userId,
+//                 category_id: deviceDate.categoryId
+//             },
+//         );
+//
+//         return await response.data;
+//     } catch (error) {
+//         if (error.response && error.response.data.message) {
+//             throw new Error(error.response.data.message);
+//         }
+//         throw new Error(error.response.data.detail);
+//     }
+// };
+export const GetAllStudent = async () => {
+    const allStudent = await axiosInstance.get(`${API_URL}/admin/get_all_students`);
+    return allStudent.data;
 };
 // export const DeleteUser = async (userId) => {
 //     const Department = await axiosInstance.delete(

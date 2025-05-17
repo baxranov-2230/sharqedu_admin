@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import {
-    BrowserRouter as Router,
+
     Routes,
     Route,
     useLocation, useNavigate, Navigate,
@@ -10,7 +10,7 @@ import HemisLogo from "./components/HemisLogo";
 import Sidebar from "./components/Sidebar";
 import Dashboard from "./pages/Dashboard";
 
-import Schedule from "./pages/Schedule";
+
 import {Toaster} from "react-hot-toast";
 
 import LoginPage from "./pages/LoginPage.jsx";
@@ -19,15 +19,9 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Fade from "@mui/material/Fade";
+
 import {logout} from "./Api/LoginApi.jsx";
-
-
-import CreateDepartment from "./pages/Department/CreateDepartment.jsx";
-import ListDepartment from "./pages/Department/ListDepartment.jsx";
-import UpdateDepartment from "./pages/Department/UpdateDepartment.jsx";
-import CreateUser from "./pages/User/CreateUser.jsx";
-import ListUser from "./pages/User/ListUser.jsx";
-import UpdateUser from "./pages/User/UpdateUser.jsx";
+import ListStudents from "./pages/Device/ListStudents.jsx";
 
 
 function ProtectedRoute({children}) {
@@ -37,9 +31,9 @@ function ProtectedRoute({children}) {
 
     if (!token) {
         // Agar token mavjud bo'lmasa, login sahifasiga yo'naltirish
-        return <Navigate to="/login" state={{from: location}} replace/>;
-    }
+        return <Navigate to="/login" state={{from: location}} replace/> ;
 
+    }
     return children;
 }
 
@@ -126,7 +120,6 @@ function App() {
                 </header>
             )}
             <div className={`flex ${!isLoginPage ? "pt-16" : ""}`}>
-                {/* Show sidebar only when not on login page */}
                 {!isLoginPage && <Sidebar isOpen={isSidebarOpen}/>}
                 <main
                     className={`flex-1 p-6 transition-all duration-300 ${
@@ -150,54 +143,13 @@ function App() {
                         />
 
                         <Route
-                            path="/create-department"
+                            path="/list-students"
                             element={
                                 <ProtectedRoute>
-                                    <CreateDepartment/>
+                                    <ListStudents/>
                                 </ProtectedRoute>
                             }
                         />
-                        <Route
-                            path="/list-department"
-                            element={
-                                <ProtectedRoute>
-                                    <ListDepartment/>
-                                </ProtectedRoute>
-                            }
-                        />
-                        <Route
-                            path="/update-department/:departmentId"
-                            element={
-                                <ProtectedRoute>
-                                    <UpdateDepartment/>
-                                </ProtectedRoute>
-                            }
-                        />
-                        <Route
-                            path="/create-user"
-                            element={
-                                <ProtectedRoute>
-                                    <CreateUser/>
-                                </ProtectedRoute>
-                            }
-                        />
-                        <Route
-                            path="/list-users"
-                            element={
-                                <ProtectedRoute>
-                                    <ListUser/>
-                                </ProtectedRoute>
-                            }
-                        />
-                        <Route
-                            path="/update-user/:userId"
-                            element={
-                                <ProtectedRoute>
-                                    <UpdateUser/>
-                                </ProtectedRoute>
-                            }
-                        />
-
 
                     </Routes>
                     <Toaster/>

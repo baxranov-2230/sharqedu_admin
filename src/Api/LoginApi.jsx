@@ -1,5 +1,4 @@
 import axios from "axios";
-// const API_URL =  'http://127.0.0.1:8000';
 const API_URL = import.meta.env.VITE_API_URL;
 
 import axiosInstance from "./axiosinstance";
@@ -11,19 +10,19 @@ export const saveTokens = (accessToken, refreshToken) => {
     );
 };
 
-export const refreshAccessToken = async (refreshToken) => {
-    const response = await axios.post(`${API_URL}/user/refresh`, null, {
-        params: { refresh_token: refreshToken },
-    });
-    const { access_token, refresh_token } = response.data;
-    saveTokens(access_token, refresh_token);
-    console.log("New -" + response.data.access_token);
-    return response.data.access_token;
-};
+// export const refreshAccessToken = async (refreshToken) => {
+//     const response = await axiosInstance.post(`${API_URL}/admin/refresh`, null, {
+//         params: { refresh_token: refreshToken },
+//     });
+//     const { access_token, refresh_token } = response.data;
+//     saveTokens(access_token, refresh_token);
+//     console.log("New -" + response.data.access_token);
+//     return response.data.access_token;
+// };
 
 export const LoginApi = async (loginDate) => {
     const response = await axios.post(
-        `${API_URL}/user/login`,
+        `${API_URL}/admin/login`,
         new URLSearchParams({
             username: loginDate.username,
             password: loginDate.password,
@@ -39,26 +38,26 @@ export const LoginApi = async (loginDate) => {
         saveTokens(access_token, refresh_token);
         // localStorage.setItem("token", JSON.stringify(response.data));
     }
-    console.log(response.data)
+
     return response.data;
 };
 export const logout = async () => {
     const token = JSON.parse(localStorage.getItem("token"));
 
-    try {
-        const response = axiosInstance.put(
-            `${API_URL}/user/logout`,
-            {}, // Agar kerak bo'lsa, payloadni bo'sh obyekt sifatida yuboring
-            {
-                headers: {
-                    Authorization: `Bearer ${token.access_token}`, // Authorization headerni yuborish
-                },
-            }
-        );
+    // try {
+    //     const response = axiosInstance.put(
+    //         `${API_URL}/user/logout`,
+    //         {}, // Agar kerak bo'lsa, payloadni bo'sh obyekt sifatida yuboring
+    //         {
+    //             headers: {
+    //                 Authorization: `Bearer ${token.access_token}`, // Authorization headerni yuborish
+    //             },
+    //         }
+    //     );
 
         localStorage.removeItem("token");
-        return response.data;
-    } catch (error) {
-        throw error.response ? error.response.data : new Error("Xatolik yuz berdi");
-    }
+    //     return response.data;
+    // } catch (error) {
+    //     throw error.response ? error.response.data : new Error("Xatolik yuz berdi");
+    // }
 };
